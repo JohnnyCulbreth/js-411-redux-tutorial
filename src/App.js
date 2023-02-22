@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import ProfileContainer from './containers/ProfileContainer';
 
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>Your React App is working!</header>
+      <ProfileContainer />
     </div>
   );
 }
