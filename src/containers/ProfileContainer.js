@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileComponent from '../components/ProfileComponent';
+import { removeCar, addCar } from '../redux/actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,4 +14,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ProfileComponent);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCar: (car) => dispatch(addCar(car)),
+    removeCar: (index) => dispatch(removeCar(index)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);
