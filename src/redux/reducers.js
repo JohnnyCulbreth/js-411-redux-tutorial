@@ -3,9 +3,9 @@ import { combineReducers } from 'redux';
 const cars = (state = [], action) => {
   switch (action.type) {
     case 'ADD_CAR':
-      return action.value;
+      return [...state, action.value];
     case 'REMOVE_CAR':
-      let newState = [...state, action.value];
+      let newState = [...state];
       newState.splice(action.value, 1);
       return newState;
 

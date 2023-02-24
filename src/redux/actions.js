@@ -1,7 +1,7 @@
-export const addCar = () => {
+export const addCar = (car) => {
   return {
     type: 'ADD_CAR',
-    value: 'Ford',
+    value: car,
   };
 };
 

@@ -1,26 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const ProfileComponent = (props) => {
-  return (
-    <div>
-      <h1>Out Profile Dumb Component</h1>
-      <h1>{props.hello}</h1>
-      <h1>{props.poop}</h1>
-      <h1>{props.user || 'undefined'}</h1>
-      {props.cars.map((car, index) => {
-        return <h2 key={index}>{car}</h2>;
-      })}
-      {props.cats.map((cat, index) => {
-        return <h2 key={index}>{cat}</h2>;
-      })}
-      {props.dogs.map((dog, index) => {
-        return <h2 key={index}>{dog}</h2>;
-      })}
-      {props.dreams.map((dream, index) => {
-        return <h2 key={index}>{dream}</h2>;
-      })}
-    </div>
-  );
-};
+class ProfileComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      newCar: '',
+    };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      newCar: e.target.value,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    this.props.addCar(this.state.newCar);
+
+    this.setState({
+      newCar: '',
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>Add a new car!</h1>
+
+        <form onSubmit={(e) => this.handleSubmit(e)}>
+          <input
+            type='text'
+            value={this.state.newCar}
+            onChange={(e) => this.handleChange(e)}
+          />
+          <input type='submit' />
+        </form>
+
+        {this.props.cars.map((car, index) => {
+          return <h2 key={index}>{car}</h2>;
+        })}
+      </div>
+    );
+  }
+}
 
 export default ProfileComponent;
